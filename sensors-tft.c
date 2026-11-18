@@ -36,6 +36,12 @@ uint16_t get_sensor(enum adc_channel adcc, uint32_t samples)
 	return (s/samples);
 }
 
+void update_sensor_values() {
+	front=get_sensor(adc_front,256);
+	left=get_sensor(adc_left,256);
+	right=get_sensor(adc_right,256);
+}
+
 // Get a sensor reading
 uint16_t get_adc(enum adc_channel adcc)
 {
@@ -97,9 +103,7 @@ void sensors_display(void)
 		}
 
 		// Get sensor values
-		front=get_sensor(adc_front,256);
-		left=get_sensor(adc_left,256);
-		right=get_sensor(adc_right,256);
+		update_sensor_values();
 
 		// Display sensor values
 		if (j%8==0) {
@@ -108,23 +112,17 @@ void sensors_display(void)
 			// Draw the text on the TFT
 			graphics_fillRect(1,1,238,10,0x0000);
 			// Get sensor values
-			front=get_sensor(adc_front,256);
-			left=get_sensor(adc_left,256);
-			right=get_sensor(adc_right,256);
+			update_sensor_values();
 			graphics_fillRect(5,30,150,25,0x0000);
 			snprintf((char *)buf,32,"%4u",left);
 			graphics_drawText((char *)buf,5,30);
 			// Get sensor values
-			front=get_sensor(adc_front,256);
-			left=get_sensor(adc_left,256);
-			right=get_sensor(adc_right,256);
+			update_sensor_values();
 			graphics_fillRect(95,5,120,25,0x0000);
 			snprintf((char *)buf,32,"%4u",front);
 			graphics_drawText((char *)buf,95,5);
 			// Get sensor values
-			front=get_sensor(adc_front,256);
-			left=get_sensor(adc_left,256);
-			right=get_sensor(adc_right,256);
+			update_sensor_values();
 			graphics_fillRect(150,30,80,25,0x0000);
 			snprintf((char *)buf,32,"%4u",right);
 			graphics_drawText((char *)buf,150,30);
