@@ -1,0 +1,4 @@
+git clone https://github.com/raspberrypi/pico-sdk.git
+cd pico-sdk
+git submodule update --init
+env PICO_SDK_PATH=~/dept/courses/ece101-F25/code/pico-sdk PICO_TOOLCHAIN_PATH=/usr/local/gcc-arm-none-eabi/bin cmake ..

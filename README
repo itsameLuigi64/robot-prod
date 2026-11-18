@@ -1,0 +1,24 @@
+Using this code do the following:
+
+Set the SDK & tools env variables
+
+$ export PICO_SDK_PATH=/home/pi/ece177-S23/pico-sdk
+$ export PICO_TOOLCHAIN_PATH=/usr/local/gcc-arm-none-eabi/bin/
+
+Create the build directory
+
+$ mkdir build
+
+In the build directory, setup the build environment.
+Be sure to specify the pico_w as the board
+
+$ cd build
+$ cmake -DPICO_BOARD=pico_w ..
+
+Compile the code
+
+$ make
+
+Copy the UF2 file to the Pico
+
+$ cp test-code.uf2 /media/pi/RPI-RP2
