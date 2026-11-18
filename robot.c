@@ -124,9 +124,16 @@ int main(void)
 	// Wheel base is 5.3"
 	// Pico is clocked at 125 MHz
 	// PWM are prescaled at 255 (divide)
-	//   And then by the PWM count
+	// And then by the PWM count
 	// At higher speed the motors/wheels appear to slip causing large turn radii
 
+	//Ideas:
+	// 1. Use a PID controller to adjust the motor speeds based on the sensor readings.
+	// 2. Implement a state machine to handle different scenarios (e.g., turning, stopping, moving forward) based on the sensor inputs.
+	// 3. For instance, if the left or right sensor is reading a low value(far away from wall),
+	// the robot could execute a turn towards that direction right turn towards that direction, 
+	// until the front sensor is reading a low value (wall is far away), then move forward.
+	
 	// Prepare to move out of the gate quickly
 	motors.tlper=3500;
 	motors.trper=3500;
@@ -148,8 +155,9 @@ int main(void)
 					motors.trper=3500+5*err;
 				}
 			} else if (err<-200) {	// Right too close - go left
-				if (f_err>200) {
-				} else if (f_err<-200) {	// If the front sees a wall
+				if (f_err>200) { 
+				} else if (f_err<-200) { // If the front sees a wall 
+					//This code will never run. Guessing there used to be two front sensors
 					motors.tlper=3500-5*err+f_err*f_err;
 					motors.trper=3500;
 				} else {	// No wall out front
