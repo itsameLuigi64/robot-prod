@@ -12,6 +12,9 @@
 #include "sensors-tft.h"
 #include "motors.h"
 
+//Uses 2 Vexta PX245-02B-C8 Stepper Motors With a 1.8 deg angle
+
+
 // Entry point
 int main(void)
 {
