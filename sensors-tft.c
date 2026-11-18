@@ -72,6 +72,9 @@ void sensors_display(void)
 	// ADC GP28/ADC0
 	adc_init();	
 	adc_gpio_init(26);
+	//These pins might also need to be initialized
+	// adc_gpio_init(27);
+	// adc_gpio_init(28);
 	adc_select_input(0);
 
 	// TFT is at 53 (135) 40 (239) for corner on rotated display (widescreen)
